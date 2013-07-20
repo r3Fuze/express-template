@@ -61,11 +61,13 @@ console.log(util.randomID());
 
 /* Routes
  * ====================== */
-app.get("/", function(req, res) {
-    res.render("index", {
-        title: "Building Web Apps in Node with Express"
-    });
-});
+app.get("/", routes.index);
+
+
+/* Handle 404 and 500. This should be called after all other routes
+ * ====================== */
+app.use(routes._404);
+app.use(routes._500);
 
 
 /* Create the server
