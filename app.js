@@ -8,10 +8,12 @@ var express = require("express"),
     http    = require("http"),
 
     routes  = require("./routes/routes"),
+    util    = require("./util"),
     secret  = require("./secret");
 
 
 var app = express();
+
 
 app.locals({
     theme: "cosmo"
@@ -55,6 +57,7 @@ app.configure(function() {
     app.use(express.static(__dirname + "/public"));
 });
 
+console.log(util.randomID());
 
 /* Routes
  * ====================== */
