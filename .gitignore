@@ -5,3 +5,7 @@ bin
 dist
 
 *.log
+
+# Contains secret information that could ruin
+# the universe if showed to the public
+secret.js
