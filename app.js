@@ -17,6 +17,7 @@ app.locals({
     theme: "cosmo"
 });
 
+
 /* Configuration
     - Set the port to 3000
     - Set the views folder to /views
