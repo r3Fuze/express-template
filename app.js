@@ -7,7 +7,8 @@
 var express = require("express"),
     http    = require("http"),
 
-    routes  = require("./routes/routes");
+    routes  = require("./routes/routes"),
+    secret  = require("./secret");
 
 
 var app = express();
@@ -20,7 +21,9 @@ app.locals({
     - Set the port to 3000
     - Set the views folder to /views
     - Set the view engine to jade
+    - Something.??
     - Enable case sensitive routing
+    - Enable advanced logger
 
     - Parse request bodies
     - Something with HTTP requests??
@@ -34,7 +37,9 @@ app.configure(function() {
     app.set("port", process.env.PORT || 3000);
     app.set("views", __dirname + "/views");
     app.set("view engine", "jade");
+    app.set("view options", { layout: false });
     app.enable("case sensitive routing");
+    app.use(express.logger("dev"));
 
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -61,6 +66,6 @@ app.get("/", function(req, res) {
 
 /* Create the server
  * ====================== */
-http.createServer(app).listen(app.get("port"), function() {
+var server = http.createServer(app).listen(app.get("port"), function() {
     console.log("Express server listening on port " + app.get("port"));
 });
