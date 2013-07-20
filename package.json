@@ -1,0 +1,17 @@
+{
+    "name": "ExpressTemplate",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "nodemon app.js"
+    },
+    "main": "app.js",
+    "dependencies": {
+        "express": "3.3.4",
+        "jade": "*",
+        "less-middleware": "*"
+    },
+    "devDependencies": {
+        "nodemon": "*"
+    }
+}

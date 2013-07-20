@@ -1,0 +1,7 @@
+node_modules
+spikes
+exclude
+bin
+dist
+
+*.log
