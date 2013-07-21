@@ -1,6 +1,8 @@
 /* TODO:
     - Install other dependencies (socket.io, etc)
+    - Fix app.locals
  * ====================== */
+
 
 /* Dependencies
  * ====================== */
@@ -13,11 +15,6 @@ var express = require("express"),
 
 
 var app = express();
-
-
-app.locals({
-    theme: "cosmo"
-});
 
 
 /* Configuration
@@ -46,6 +43,14 @@ app.configure(function() {
 
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+
+    // Set the local property 'url' to the current url. Used for navbar
+    app.use(function(req, res, next) {
+        if (req.url === "/") res.locals.url = "index";
+        else res.locals.url = req.url.replace(/\W/g, "");
+        next();
+    });
+
     app.use(app.router);
 
     app.use(require("less-middleware")({
@@ -57,7 +62,16 @@ app.configure(function() {
     app.use(express.static(__dirname + "/public"));
 });
 
-console.log(util.randomID());
+
+/* Set locals
+ * ====================== */
+app.locals({
+    appName: "Template",
+    theme: "flatly",
+    author: "Morten Lindhardt",
+    authorLink: "http://github.com/r3Fuze"
+});
+
 
 /* Routes
  * ====================== */
