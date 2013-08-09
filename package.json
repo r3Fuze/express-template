@@ -7,11 +7,18 @@
     },
     "main": "app.js",
     "dependencies": {
-        "express": "3.3.4",
-        "jade": "*",
-        "less-middleware": "*"
+        "express": "~3.3.4",
+        "jade": "latest",
+        "less-middleware": "latest",
+        "colors": "latest",
+        "mongoose": "latest",
+        "stylus": "latest",
+        "jquery-switchbox": "latest",
+        "bootstrap-glyphicons": "gh-pages"
     },
     "devDependencies": {
-        "nodemon": "*"
+        "nodemon": "latest",
+        "grunt": "latest",
+        "grunt-contrib-jshint": "latest"
     }
 }

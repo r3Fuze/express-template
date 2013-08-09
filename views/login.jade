@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    div.container
+            div#login-container
+                form
+                    div.well
+                        fieldset
+                            legend Login
+                            div.form-group
+                                label(for="login-email") Email address
+                                input#login-email.form-control(type="email", placeholder="Enter email")
+
+                            div.form-group
+                                label(for="login-password") Password
+                                input#login-password.form-control(type="password", placeholder="Password")
+
+                            div.checkbox
+                                label
+                                    input#login-remember(type="checkbox")
+                                    | Remember me
+
+                            button.btn.btn-success(type="submit") Submit
+
+                            div.pull-right(style="width=50%;")
+                                a(href="signup") Don't have an account?
+                                br
+                                a#test(href="#get-credentials", data-toggle="modal") Forgot password?
+
+    include modals/lost-password
+
+//-block script
+    script.
+        $("#login-remember").switchbox({
+            yesText: "<span class='glyphicon glyphicon-ok'></span>",
+            noText: "<span class='glyphicon glyphicon-remove'></span>"
+        });

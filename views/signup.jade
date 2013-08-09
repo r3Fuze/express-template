@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    div.container
+            div#signup-container
+                form
+                    div.well
+                        fieldset
+                            legend Signup
+                            div.form-group
+                                label(for="signup-email") Email address
+                                input#signup-email.form-control(type="email", placeholder="Email")
+
+                            div.form-group
+                                label(for="signup-username") Username
+                                input#signup-username.form-control(type="text", placeholder="Username")
+
+                            div.form-group
+                                label(for="signup-password") Password
+                                input#signup-password.form-control(type="password", placeholder="Password")
+
+                            button.btn.btn-success(type="submit") Submit
+
+                            div.pull-right(style="width=50%;")
+                                a(href="login") Already have an account?
+
+    include modals/lost-password
+

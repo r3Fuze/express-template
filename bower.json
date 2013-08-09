@@ -1,15 +1,18 @@
 {
-  "name": "express-template",
-  "version": "0.0.1",
-  "main": "app.js",
-  "ignore": [
-      "node_modules",
-      "components",
-      "bower_components",
-      "test",
-      "tests"
-  ],
-  "devDependencies": {
-      "jquery": "latest"
-  }
+    "name": "template",
+    "version": "0.0.1",
+    "main": "app.js",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "latest",
+        "prism": "gh-pages",
+        "bootstrap": "latest",
+        "bootswatch": "gh-pages"
+    }
 }

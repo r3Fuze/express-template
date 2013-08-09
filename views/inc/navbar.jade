@@ -1,14 +1,14 @@
-.navbar.navbar-fixed-top
-    .navbar-inner
-        .container
-            a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+div.navbar.navbar-fixed-top
+        div.container
+            button.navbar-toggle(type="button", data-toggle="collapse", data-target=".nav-collapse")
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-            a.brand(href="#") #{appName} &mdash;&nbsp;
-                i.muted beta
-            .nav-collapse.collapse
-                ul.nav
+            a.navbar-brand(href="/") #{appName} &mdash;&nbsp;
+                i.muted
+                    | beta
+            div.nav-collapse.collapse
+                ul.nav.navbar-nav
                     li#navbar-index
                         a(href="/") Home
                     li#navbar-about

@@ -1,10 +1,25 @@
 
 /* Index Route
  * ====================== */
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+exports.index = function(req, res) {
+  res.render("index", { title: "Express" });
 };
 
+/* Login Route
+ * ====================== */
+exports.login = function(req, res) {
+    res.render("login", {
+        title: "Login"
+    });
+};
+
+/* Signup Route
+ * ====================== */
+exports.signup = function(req, res) {
+    res.render("signup", {
+        title: "Signup"
+    });
+};
 
 /* 404 Route
  * ====================== */

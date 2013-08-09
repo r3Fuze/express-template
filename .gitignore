@@ -3,6 +3,9 @@ spikes
 exclude
 bin
 dist
+data
+public/libs
+.c9revisions
 
 *.log
 
