@@ -6,20 +6,19 @@ module.exports = function(grunt) {
         // Task configuration.
         jshint: {
             options: {
-                camelcase: true,
                 // curly: true,
-                "-W099": true,
-                eqeqeq: true,
-                immed: true,
-                newcap: true,
-                noarg: true,
-                quotmark: "double",
-                undef: true,
-                trailing: true,
-                browser: true,
-                devel: true,
-                jquery: true,
-                node: true
+                "-W099"  : true, // smart tabs
+                eqeqeq   : true,
+                immed    : true,
+                newcap   : true,
+                noarg    : true,
+                quotmark : "double",
+                undef    : true,
+                trailing : true,
+                browser  : true,
+                devel    : true,
+                jquery   : true,
+                node     : true
 
             },
             files: {

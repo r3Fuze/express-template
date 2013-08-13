@@ -1,24 +1,22 @@
 {
-    "name": "express-template",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "nodemon app.js"
-    },
-    "main": "app.js",
-    "dependencies": {
-        "express": "~3.3.4",
-        "jade": "latest",
-        "less-middleware": "latest",
-        "colors": "latest",
-        "mongoose": "latest",
-        "stylus": "latest",
-        "jquery-switchbox": "latest",
-        "bootstrap-glyphicons": "gh-pages"
-    },
-    "devDependencies": {
-        "nodemon": "latest",
-        "grunt": "latest",
-        "grunt-contrib-jshint": "latest"
-    }
+  "name": "express-template",
+  "version": "0.0.1",
+  "private": true,
+  "main": "app.js",
+  "dependencies": {
+    "express": "~3.3.4",
+    "jade": "latest",
+    "less-middleware": "latest",
+    "colors": "latest",
+    "mongoose": "latest",
+    "stylus": "latest",
+    "jquery-switchbox": "latest",
+    "bootstrap-glyphicons": "gh-pages",
+    "logule": "~2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "latest",
+    "grunt": "latest",
+    "grunt-contrib-jshint": "latest"
+  }
 }

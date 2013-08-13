@@ -20,7 +20,7 @@ block content
                                     input#login-remember(type="checkbox")
                                     | Remember me
 
-                            button.btn.btn-success(type="submit") Submit
+                            button#login-submit.btn.btn-success(type="submit") Submit
 
                             div.pull-right(style="width=50%;")
                                 a(href="signup") Don't have an account?
@@ -29,9 +29,5 @@ block content
 
     include modals/lost-password
 
-//-block script
-    script.
-        $("#login-remember").switchbox({
-            yesText: "<span class='glyphicon glyphicon-ok'></span>",
-            noText: "<span class='glyphicon glyphicon-remove'></span>"
-        });
+block script
+    script(src="/js/login.js")

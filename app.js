@@ -3,55 +3,43 @@
     - Fix app.locals
     - Make Grunt work
     - Clean up jade files
+
+   Pkgs:
+    - http://dandean.github.io/express-form/ - validate forms
  * ====================== */
 
 
 /* Dependencies
  * ====================== */
-var express  = require("express"),
-    http     = require("http"),
-    stylus   = require("stylus"),
-    mongoose = require("mongoose"),
+var express     = require("express"),
+    http        = require("http"),
+    stylus      = require("stylus"),
+    mongo       = require("mongoose"),
+    log         = require("logule").init(module),
 
-    routes   = require("./routes/routes"),
-    util     = require("./util");
+    conf        = require("./conf"),
+    routes      = require("./routes/routes"),
+    util        = require("./util");
 
     require("colors");
 
-var PORT = process.env.PORT,
-    IP = process.env.IP;
-
 
 var app = express();
-mongoose.connect("mongodb://localhost/users");
+mongo.connect(conf.mongo_url);
 
 
 /* Configuration
-    - Set the port to 3000
-    - Set the views folder to /views
-    - Set the view engine to jade
-    - Something.??
-    - Enable case sensitive routing
-    - Enable advanced logger
-
-    - Parse request bodies
-    - Something with HTTP requests??
-    - Handle custom files before exposing /public??
-
-    - Handle .less stylesheets
-
-    - Serve static files??
  * ====================== */
 app.configure(function() {
     app.set("views", __dirname + "/views");
     app.set("view engine", "jade");
 
     app.set("view options", { layout: false });
-    app.enable("case sensitive routing");
     // app.use(express.logger("dev")); // comment if too much spam
 
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    // app.use(express.session({ secret: conf.session_secret })); this gives err 500
 
     // Set the local property 'url' to the current url. Used for navbar
     app.use(function(req, res, next) {
@@ -60,13 +48,8 @@ app.configure(function() {
         next();
     });
 
+    app.locals = conf.locals;
     app.use(app.router);
-
-    /*app.use(require("less-middleware")({
-        dest: __dirname + '/public/css',
-        src: __dirname + '/public/less',
-        compress: true
-    }));*/
 
     app.use(stylus.middleware({
         src: __dirname + "/public/stylus",
@@ -77,23 +60,21 @@ app.configure(function() {
 });
 
 
-/* Set locals
- * ====================== */
-app.locals({
-    appName: "Template",
-    theme: "cosmo",
-    author: "Morten Lindhardt",
-    authorLink: "http://github.com/r3Fuze"
-});
-
-
 /* Database
  * ====================== */
-var db = mongoose.connection;
+var db = mongo.connection;
 db.on("error", console.error.bind(console, "connection error")); // change this
 db.once("open", function() {
     // stuff
-    console.log("DB open");
+    log.info("DB open");
+
+    var userSchema = new mongo.Schema({
+        username: {
+            type: String,
+            unique: true,
+            match: /^[a-zA-Z0-9_]{3,20}$/
+        }
+    });
 });
 
 
@@ -104,7 +85,8 @@ app.get("/login", routes.login);
 app.get("/signup", routes.signup);
 
 
-/* Handle 404 and 500. This should be called after all other routes
+/* Handle 404 and 500.
+   This should be called after all other routes
  * ====================== */
 app.use(routes._404);
 app.use(routes._500);
@@ -112,6 +94,6 @@ app.use(routes._500);
 
 /* Create the server
  * ====================== */
-var server = http.createServer(app).listen(PORT, function() {
-    console.log("Express server listening on port %s".blue, PORT);
+var server = http.createServer(app).listen(conf.PORT, function() {
+    log.info("Express server listening on port %s", conf.PORT);
 });
