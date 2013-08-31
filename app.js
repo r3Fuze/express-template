@@ -14,8 +14,9 @@
 var express     = require("express"),
     http        = require("http"),
     stylus      = require("stylus"),
-    mongo       = require("mongoose"),
+    // mongo       = require("mongoose"),
     log         = require("logule").init(module),
+    errorface   = require("errorface"),
 
     conf        = require("./conf"),
     routes      = require("./routes/routes"),
@@ -25,7 +26,7 @@ var express     = require("express"),
 
 
 var app = express();
-mongo.connect(conf.mongo_url);
+// mongo.connect(conf.mongo_url);
 
 
 /* Configuration
@@ -38,18 +39,26 @@ app.configure(function() {
     // app.use(express.logger("dev")); // comment if too much spam
 
     app.use(express.bodyParser());
+    app.use(express.cookieParser());
     app.use(express.methodOverride());
     // app.use(express.session({ secret: conf.session_secret })); this gives err 500
 
     // Set the local property 'url' to the current url. Used for navbar
+    // Fix this so it doesn't fire for each request
     app.use(function(req, res, next) {
-        if (req.url === "/") res.locals.url = "index";
-        else res.locals.url = req.url.replace(/\W/g, "");
+        if (req.url === "/") {
+            res.locals.url = "index";
+        } else {
+            res.locals.url = req.url.replace(/\W/g, "");
+        }
+        var app_theme = req.cookies.app_theme || "cosmo";
+        res.locals.app_theme = app_theme;
+
         next();
     });
 
     app.locals = conf.locals;
-    app.use(app.router);
+    // app.use(app.router);
 
     app.use(stylus.middleware({
         src: __dirname + "/public/stylus",
@@ -62,7 +71,7 @@ app.configure(function() {
 
 /* Database
  * ====================== */
-var db = mongo.connection;
+/*var db = mongo.connection;
 db.on("error", console.error.bind(console, "connection error")); // change this
 db.once("open", function() {
     // stuff
@@ -75,7 +84,7 @@ db.once("open", function() {
             match: /^[a-zA-Z0-9_]{3,20}$/
         }
     });
-});
+});*/
 
 
 /* Routes
@@ -83,6 +92,10 @@ db.once("open", function() {
 app.get("/", routes.index);
 app.get("/login", routes.login);
 app.get("/signup", routes.signup);
+app.get("/docs", routes.docs);
+app.get("/error", function() {
+    app.wat();
+});
 
 
 /* Handle 404 and 500.
@@ -90,6 +103,7 @@ app.get("/signup", routes.signup);
  * ====================== */
 app.use(routes._404);
 app.use(routes._500);
+// app.use(errorface.errorHandler()); uncomment to use errorface errors
 
 
 /* Create the server

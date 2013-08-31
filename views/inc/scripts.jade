@@ -4,10 +4,21 @@ script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
 script(src="/libs/bootstrap/dist/js/bootstrap.min.js")
 //- script(src="/libs/socket.io/socket.io.min.js")
 script(src="/libs/prism/prism.js")
+script(src="/libs/jquery.cookie/jquery.cookie.js")
 script(src="/libs/jquery-switchbox/jquery.switchbox.js")
 //- uncomment when sugar.js is needed script(src="/libs/sugarjs/sugar.min.js")
-//- script(src="/js/main.js")
+script(src="/js/main.js")
 script.
     //- set the navbar active for the current url
     $("#navbar-!{url}").addClass("active");
+
+    $("#theme-nav ul li").children("a").on("click", function(e) {
+        e.preventDefault();
+        var newTheme = $(this).text().toLowerCase();
+        console.log("Clicked " + newTheme);
+
+        $.cookie("app_theme", newTheme, { expires: 365 * 10, path: "/" });
+        $("#theme-css").attr("href", "/libs/bootswatch/" + newTheme + "/bootstrap.min.css");
+    });
+
 block script

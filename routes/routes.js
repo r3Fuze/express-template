@@ -21,6 +21,14 @@ exports.signup = function(req, res) {
     });
 };
 
+/* Docs Route
+ * ====================== */
+exports.docs = function(req, res) {
+    res.render("docs", {
+        title: "docs"
+    });
+};
+
 /* 404 Route
  * ====================== */
 exports._404 = function(req, res) {

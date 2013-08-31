@@ -1,18 +1,21 @@
 {
-    "name": "template",
-    "version": "0.0.1",
-    "main": "app.js",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "jquery": "latest",
-        "prism": "gh-pages",
-        "bootstrap": "latest",
-        "bootswatch": "gh-pages"
-    }
+  "name": "template",
+  "version": "0.0.1",
+  "main": "app.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "prism": "gh-pages",
+    "bootstrap": "latest",
+    "bootswatch": "gh-pages",
+    "bootstrap-glyphicons": "gh-pages",
+    "bootstrap-select": "*",
+    "jquery.cookie": "~1.3.1"
+  }
 }

@@ -8,9 +8,23 @@ module.exports = {
     // app.locals
     locals: {
         appName: "Template",
-        theme: "cosmo",
+        theme: "flatly", // cosmo
         author: "Morten Lindhardt",
-        authorLink: "http://github.com/r3Fuze"
+        authorLink: "http://github.com/r3Fuze",
+        themes: [
+            "Amelia",
+            "Cerulean",
+            "Cosmo",
+            "Cyborg",
+            "Flatly",
+            "Journal",
+            "Readable",
+            "Simplex",
+            "Slate",
+            "Spacelab",
+            "United",
+            "Default"
+        ]
     },
 
     // Jake

@@ -2,9 +2,6 @@
  * ====================== */
 body {
   padding-top: 65px;
-  background-image: url("../img/paper_fibers.png");
-  background-size: auto;
-  background-repeat: repeat repeat;
 }
 @media screen and (max-width: 768px) {
   body {
